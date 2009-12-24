@@ -1,0 +1,79 @@
+<configure
+ xmlns="http://namespaces.zope.org/zope"
+ xmlns:zojax="http://namespaces.zope.org/zojax"
+ i18n_domain="zojax.principal.facebook">
+  
+  <zojax:product
+   name="zojax-principal-facebook"
+   title="Facebook Authentication"
+   description="Facebook authentication module."
+   schema=".product.IFacebookAuthenticationProduct"
+   class=".product.FacebookAuthenticationProduct"
+   configurable="true"/>
+  
+  <registerIn
+   registry="zojax.product.zojax-principal-facebook">
+
+    <class
+     class=".plugin.CredentialsPlugin">
+      <require
+       permission="zope.ManageServices"
+       interface="zojax.content.type.interfaces.IItem"
+       set_schema="zojax.content.type.interfaces.IItem"/>
+    </class>
+    
+    <zojax:content
+     title="Facebook Member"
+     name="facebook.principal.user"
+     schema=".interfaces.IFacebookPrincipal"
+     class=".plugin.FacebookPrincipal"
+     containers="facebook.principal.users"
+     permission="zojax.principal.ManageUser"/>
+
+    <class class=".plugin.FacebookPrincipal">
+      <implements interface="zojax.principal.field.interfaces.IUser"/>
+      <implements interface="zojax.content.type.interfaces.ISearchableContent"/>
+      <require
+       permission="zope.View"
+       interface="zojax.principal.field.interfaces.IUser"/>
+      <require
+       permission="zojax.ModifyContent"
+       interface=".interfaces.IFacebookPrincipal"
+       set_schema=".interfaces.IFacebookPrincipal"/>
+    </class>
+    
+    <zojax:content
+     title="Facebook Users"
+     name="facebook.principal.users"
+     class=".plugin.AuthenticatorPlugin"
+     schema="zojax.principal.users.interfaces.IUsersPlugin"
+     contains="facebook.principal.user"
+     type="zojax.content.type.interfaces.IExplicitlyAddable"
+     permission="zope.ManageServices"/>
+    
+    <class class=".plugin.AuthenticatorPlugin">
+      <implements
+       interface="zope.app.container.interfaces.IContainerNamesContainer"/>
+      <allow attributes="prefix"/>
+      <require
+       permission="zope.ManageServices"
+       interface="zojax.content.type.interfaces.IItem
+       zope.app.container.interfaces.IContainer "
+       set_schema="zojax.content.type.interfaces.IItem"/>
+    </class>
+    
+    <utility
+     name="credentials.facebook"
+     component=".plugin.credentialsFactory"/>
+    
+    <utility
+     name="principal.facebook"
+     component=".plugin.authenticatorFactory"/>
+
+    
+    <include package=".browser"/>
+    
+  </registerIn>
+  
+  
+</configure>

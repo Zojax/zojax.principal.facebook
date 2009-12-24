@@ -1,0 +1,19 @@
+<configure
+ xmlns="http://namespaces.zope.org/zope"
+ xmlns:browser="http://namespaces.zope.org/browser"
+ xmlns:zojax="http://namespaces.zope.org/zojax"
+ i18n_domain="zojax.principal.facebook">
+
+  <browser:page
+    for="zojax.portal.interfaces.IPortal"
+    name="xd_receiver.htm"
+    permission="zope.Public"
+    template="xd_receiver.pt" />
+  
+  <zojax:portlet
+     name="portlet.facebook-connect"
+     title="Facebook Connect"
+     template="portlet.pt"
+     class=".portlet.FacebookConnect" />
+
+</configure>
