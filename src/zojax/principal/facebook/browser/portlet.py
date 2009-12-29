@@ -1,7 +1,7 @@
 from zope import component
 from zope.app.security.interfaces import IUnauthenticatedPrincipal
-from zope.app import zapi
 from zope.app.component.hooks import getSite
+from zope.traversing.browser import absoluteURL
 
 from zojax.controlpanel.interfaces import IConfiglet
 from zojax.portlet.portlet import PortletBase
@@ -12,7 +12,7 @@ class FacebookConnect(PortletBase):
     def update(self):
         super(FacebookConnect, self).update()
         configlet = component.getUtility(IConfiglet, name="product.zojax-principal-facebook")
-        self.fbInitScript = 'FB.init("%s", "%s/xd_receiver.htm");' % (configlet.apiKey, zapi.absoluteURL(getSite(), self.request))
+        self.fbInitScript = 'FB.init("%s", "%s/xd_receiver.htm");' % (configlet.apiKey, absoluteURL(getSite(), self.request))
 
     def isAvailable(self):
         if not IUnauthenticatedPrincipal.providedBy(self.request.principal):
