@@ -10,10 +10,12 @@ class IFacebookAuthenticationProduct(interface.Interface):
     """ product """
 
     apiKey = schema.TextLine(title=_(u"Facebook API Key"),
-                                  required=True,)
+                             description=_(u'See http://developers.facebook.com/setup.php'),
+                             required=True,)
 
     apiSecret = schema.TextLine(title=_(u"Facebook API Secret"),
-                                  required=True,)
+                                description=_(u'See http://developers.facebook.com/setup.php'),
+                                required=True,)
 
 
 class IFacebookPrincipal(IPrincipal):
