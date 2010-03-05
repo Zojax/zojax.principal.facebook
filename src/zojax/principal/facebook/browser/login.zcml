@@ -1,0 +1,12 @@
+<configure
+ xmlns="http://namespaces.zope.org/zope"
+ xmlns:zojax="http://namespaces.zope.org/zojax"
+ i18n_domain="zojax.principal.facebook">
+
+  <adapter
+     for="..plugin.CredentialsPlugin *"
+     provides="zojax.authentication.interfaces.ILoginAction"
+     factory=".login.LoginAction"
+     />
+
+</configure>

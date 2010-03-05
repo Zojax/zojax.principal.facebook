@@ -2,10 +2,11 @@
  xmlns="http://namespaces.zope.org/zope"
  xmlns:browser="http://namespaces.zope.org/browser"
  xmlns:zojax="http://namespaces.zope.org/zojax"
+ xmlns:zcml="http://namespaces.zope.org/zcml"
  i18n_domain="zojax.principal.facebook">
 
   <browser:page
-    for="zojax.portal.interfaces.IPortal"
+    for="zope.app.component.interfaces.ISite"
     name="xd_receiver.htm"
     permission="zope.Public"
     template="xd_receiver.pt" />
@@ -15,5 +16,23 @@
      title="Facebook Connect"
      template="portlet.pt"
      class=".portlet.FacebookConnect" />
+     
+  <include file="login.zcml" />
+  
+  <zojax:pageelement
+     title="Facebook body headers"
+     name="principal.facebook.bodyheaders"
+     template="headers.pt"
+     manager="zojax.theme.default.interfaces.IPageBodyHeaders"
+     weight="200"
+     layer="zojax.theme.default.interfaces.ICommonSkinLayer"
+     zcml:condition="installed zojax.theme.default"
+     />
+  
+  <browser:page
+     for="zope.app.component.interfaces.ISite"
+     name="facebookSignIn"
+     permission="zope.Public"
+     class=".signin.FacebookSignIn"/>
 
 </configure>

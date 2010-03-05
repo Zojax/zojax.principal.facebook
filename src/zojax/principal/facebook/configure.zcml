@@ -62,6 +62,16 @@
        set_schema="zojax.content.type.interfaces.IItem"/>
     </class>
     
+    <subscriber handler=".foundsubscriber.foundPrincipalCreated" />
+     
+     <subscriber handler=".foundsubscriber.principalLoggingOut" />
+   
+     <subscriber
+        for="zope.app.authentication.interfaces.IAuthenticatedPrincipalCreated"
+        handler=".foundsubscriber.foundPrincipalCreated" />
+   
+     <adapter factory=".foundsubscriber.getInternalPrincipal" />
+
     <utility
      name="credentials.facebook"
      component=".plugin.credentialsFactory"/>

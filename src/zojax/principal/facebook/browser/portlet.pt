@@ -1,8 +1,7 @@
 <div class="z-portlet portlet-facebook-connect" i18n:domain="zojax.principal.facebook"
      xmlns:fb="http://www.facebook.com/2008/fbml">
-    <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US" type="text/javascript"></script>
     <div class="z-portlet-item">
-      <fb:login-button></fb:login-button>
+      <fb:login-button tal:attributes="onlogin view/onlogin"></fb:login-button>
       <script type="text/javascript" tal:content="view/fbInitScript">
       </script>
     </div>

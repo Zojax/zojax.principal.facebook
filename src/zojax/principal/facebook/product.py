@@ -1,6 +1,11 @@
 from zope import interface
+from zope.traversing.browser import absoluteURL
+from zope.app.component.hooks import getSite
+
 from zojax.product.product import Product
-from zojax.principal.facebook.interfaces import IFacebookAuthenticationProduct
+from zojax.resourcepackage import library
+
+from interfaces import IFacebookAuthenticationProduct
 
 
 class FacebookAuthenticationProduct(Product):
@@ -12,3 +17,8 @@ class FacebookAuthenticationProduct(Product):
 
     def update(self):
         pass
+
+    def initScript(self, request):
+        return r"""
+FB.init("%(apiKey)s", "%(siteURL)s/xd_receiver.htm", {"forceBrowserPopupForLogin":true});
+""" % dict(apiKey=self.apiKey, siteURL=absoluteURL(getSite(), request))

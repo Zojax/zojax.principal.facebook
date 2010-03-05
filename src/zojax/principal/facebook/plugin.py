@@ -8,17 +8,6 @@ from zope.schema.fieldproperty import FieldProperty
 
 from zojax.authentication.factory import CredentialsPluginFactory, \
     AuthenticatorPluginFactory
-from zojax.authentication.interfaces import ICredentialsPlugin, \
-    PrincipalRemovingEvent
-from zojax.cache.interfaces import ICacheConfiglet
-from zojax.content.type.container import ContentContainer
-from zojax.content.type.item import PersistentItem
-from zojax.controlpanel.interfaces import IConfiglet
-from zojax.principal.facebook.interfaces import _, IFacebookPrincipal, \
-    IFacebookCredentials, IFacebookAuthenticator
-from zojax.principal.users.interfaces import IUsersPlugin
-from zojax.principal.users.plugin import PrincipalInfo
-
 import datetime
 import md5
 import rwproperty
@@ -26,11 +15,37 @@ import simplejson
 import time
 import urllib
 
+from zojax.authentication.interfaces import ICredentialsPlugin, \
+    PrincipalRemovingEvent
+from zojax.cache.interfaces import ICacheConfiglet
+from zojax.content.type.container import ContentContainer
+from zojax.content.type.item import PersistentItem
+from zojax.principal.users.interfaces import IUsersPlugin
+from zojax.principal.users.plugin import PrincipalInfo
+
+from interfaces import _, IFacebookPrincipal, IFacebookPrincipalInfo, \
+    IFacebookCredentials, IFacebookAuthenticator, IFacebookAuthenticationProduct
+
 
 REST_SERVER = 'http://api.facebook.com/restserver.php'
 
 
 _marker = object()
+
+
+class FacebookPrincipalInfo(object):
+    interface.implements(IFacebookPrincipalInfo)
+
+    description = u''
+
+    def __init__(self, id, internal):
+        self.id = id
+        self.facebookId = internal.facebookId
+        self.title = internal.title
+        self.internalId = internal.__name__
+
+    def __repr__(self):
+        return 'GoogleFCPrincipalInfo(%r)' % self.id
 
 
 class FacebookPrincipal(PersistentItem):
@@ -80,7 +95,6 @@ def getFacebookSignatureHash(valuesDict, apiKey, apiSecret, isCookieCheck=False)
             signature_keys.append(key)
         elif (isCookieCheck is False):
             signature_keys.append(key)
-
     if (isCookieCheck):
         signature_string = ''.join(['%s=%s' % (x.replace(apiKey + '_',''), valuesDict[x]) for x in signature_keys])
     else:
@@ -88,6 +102,13 @@ def getFacebookSignatureHash(valuesDict, apiKey, apiSecret, isCookieCheck=False)
     signature_string = signature_string + apiSecret
 
     return md5.new(signature_string).hexdigest()
+
+
+def expireCookies(request, apiKey):
+    cookies = request.getCookies()
+    for key in sorted(cookies.keys()):
+        if apiKey in key:
+            request.response.expireCookie(key)
 
 
 class CredentialsPlugin(PersistentItem):
@@ -103,9 +124,9 @@ class CredentialsPlugin(PersistentItem):
         A return value of None indicates that no credentials could be found.
         Any other return value is treated as valid credentials.
         """
-        configlet = component.getUtility(IConfiglet, name="product.zojax-principal-facebook")
-        apiKey = configlet.apiKey
-        apiSecret = configlet.apiSecret
+        product = component.getUtility(IFacebookAuthenticationProduct)
+        apiKey = product.apiKey
+        apiSecret = product.apiSecret
         if not apiKey or not apiSecret:
             # Product is not configured
             return None
@@ -120,7 +141,6 @@ class CredentialsPlugin(PersistentItem):
 
         if apiKey not in cookies:
             return None
-
         return FacebookCredentials(int(cookies[apiKey + '_user']))
 
 
@@ -205,7 +225,7 @@ class AuthenticatorPlugin(ContentContainer):
         if id.startswith(self.prefix):
             internal = self.get(id[len(self.prefix):])
             if internal is not None:
-                return PrincipalInfo(id, internal)
+                return FacebookPrincipalInfo(id, internal)
 
     def getPrincipalByLogin(self, login):
         """ return principal info by login """

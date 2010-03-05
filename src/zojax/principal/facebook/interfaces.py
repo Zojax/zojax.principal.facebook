@@ -1,5 +1,7 @@
 from zope import interface, schema
 from zope.i18nmessageid.message import MessageFactory
+from zope.app.authentication.interfaces import IPrincipalInfo
+
 from zojax.principal.users.interfaces import IPrincipal
 
 
@@ -16,7 +18,18 @@ class IFacebookAuthenticationProduct(interface.Interface):
     apiSecret = schema.TextLine(title=_(u"Facebook API Secret"),
                                 description=_(u'See http://developers.facebook.com/setup.php'),
                                 required=True,)
+    
+    def initScript(request):
+        """init script"""
+        
+        
+class IFacebookPrincipalInfo(IPrincipalInfo):
+    """ principal info """
 
+    internalId = interface.Attribute('Internal ID')
+
+    facebookId = interface.Attribute('Facebook ID')
+    
 
 class IFacebookPrincipal(IPrincipal):
     """ facebook principal """
@@ -26,6 +39,10 @@ class IFacebookPrincipal(IPrincipal):
 
     facebookId = schema.Int(title=_(u"Facebook ID"))
 
+
+class IFacebookPrincipalMarker(interface.Interface):
+    """ facebook principal marker """
+    
 
 class IFacebookCredentials(interface.Interface):
 

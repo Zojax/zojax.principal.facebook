@@ -28,13 +28,14 @@ setup(name='zojax.principal.facebook',
       install_requires=[
             'setuptools',
             'simplejson',
-            'zojax.product',
-            'zojax.portal',
-            'zojax.content.type',
+            'rwproperty',
+            'zojax.layout',
             'zojax.authentication',
+            'zojax.product',
+            'zojax.content.type',
+            'zojax.cache',
             'zojax.principal.users',
             'zojax.portlet',
-            'zojax.cache',
 
           # -*- Extra requirements: -*-
       ],

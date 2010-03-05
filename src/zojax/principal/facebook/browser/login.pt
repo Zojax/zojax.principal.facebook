@@ -1,0 +1,6 @@
+<div class="facebook-auth" i18n:domain="zojax.principal.facebook"
+     xmlns:fb="http://www.facebook.com/2008/fbml">
+  <fb:login-button tal:attributes="onlogin view/onlogin"></fb:login-button>
+  <script type="text/javascript" tal:content="view/fbInitScript">
+  </script>
+</div>
