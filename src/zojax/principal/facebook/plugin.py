@@ -143,7 +143,7 @@ class CredentialsPlugin(PersistentItem):
 
 
 class AuthenticatorPlugin(ContentContainer):
-    interface.implements(IUsersPlugin, IAuthenticatorPlugin, IFacebookAuthenticator, INameChooser)
+    interface.implements(IAuthenticatorPlugin, IFacebookAuthenticator, INameChooser)
 
     def __init__(self, title=_('Facebook users'), description=u'', prefix=u'zojax.facebook.'):
         self.prefix = unicode(prefix)
