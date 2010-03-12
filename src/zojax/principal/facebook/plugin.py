@@ -20,8 +20,6 @@ from zojax.authentication.interfaces import ICredentialsPlugin, \
 from zojax.cache.interfaces import ICacheConfiglet
 from zojax.content.type.container import ContentContainer
 from zojax.content.type.item import PersistentItem
-from zojax.principal.users.interfaces import IUsersPlugin
-from zojax.principal.users.plugin import PrincipalInfo
 
 from interfaces import _, IFacebookPrincipal, IFacebookPrincipalInfo, \
     IFacebookCredentials, IFacebookAuthenticator, IFacebookAuthenticationProduct
@@ -296,6 +294,6 @@ credentialsFactory = CredentialsPluginFactory(
     u'')
 
 authenticatorFactory = AuthenticatorPluginFactory(
-    "principal.facebook", AuthenticatorPlugin, ((IUsersPlugin, ''),),
+    "principal.facebook", AuthenticatorPlugin, ((IFacebookAuthenticator, ''),),
     _(u'Facebook users'),
     u'')
