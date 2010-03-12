@@ -46,7 +46,7 @@
      title="Facebook Users"
      name="facebook.principal.users"
      class=".plugin.AuthenticatorPlugin"
-     schema="zojax.principal.users.interfaces.IUsersPlugin"
+     schema=".interfaces.IFacebookAuthenticator"
      contains="facebook.principal.user"
      type="zojax.content.type.interfaces.IExplicitlyAddable"
      permission="zope.ManageServices"/>
