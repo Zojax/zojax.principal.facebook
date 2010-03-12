@@ -3,7 +3,6 @@ from zope.app.security.interfaces import IUnauthenticatedPrincipal
 from zope.app.component.hooks import getSite
 from zope.traversing.browser import absoluteURL
 
-from zojax.controlpanel.interfaces import IConfiglet
 from zojax.portlet.portlet import PortletBase
 
 from zojax.principal.facebook.interfaces import IFacebookAuthenticationProduct

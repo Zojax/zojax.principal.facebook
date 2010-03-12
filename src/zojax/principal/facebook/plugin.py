@@ -155,7 +155,7 @@ class AuthenticatorPlugin(ContentContainer):
         super(AuthenticatorPlugin, self).__init__(title=title, description=description)
 
     def _getFacebookUserInfo(self, facebookId):
-        configlet = component.getUtility(IConfiglet, context=self, name="product.zojax-principal-facebook")
+        configlet = component.getUtility(IFacebookAuthenticationProduct)
         apiKey = configlet.apiKey
         apiSecret = configlet.apiSecret
         if not apiKey or not apiSecret:
