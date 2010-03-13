@@ -3,4 +3,7 @@
   <fb:login-button tal:attributes="onlogin view/onlogin"></fb:login-button>
   <script type="text/javascript" tal:content="view/fbInitScript">
   </script>
+  <script type="text/javascript">
+  FB.Connect.logout();
+  </script>
 </div>
