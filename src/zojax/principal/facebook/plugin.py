@@ -43,7 +43,7 @@ class FacebookPrincipalInfo(object):
         self.internalId = internal.__name__
 
     def __repr__(self):
-        return 'GoogleFCPrincipalInfo(%r)' % self.id
+        return 'FacebookPrincipalInfo(%r)' % self.id
 
 
 class FacebookPrincipal(PersistentItem):
@@ -52,8 +52,6 @@ class FacebookPrincipal(PersistentItem):
     firstname = FieldProperty(IFacebookPrincipal['firstname'])
     lastname = FieldProperty(IFacebookPrincipal['lastname'])
     login = FieldProperty(IFacebookPrincipal['login'])
-    password = FieldProperty(IFacebookPrincipal['password'])
-    description = FieldProperty(IFacebookPrincipal['description'])
     facebookId = FieldProperty(IFacebookPrincipal['facebookId'])
 
     @rwproperty.getproperty
@@ -74,9 +72,6 @@ class FacebookPrincipal(PersistentItem):
             component.getUtility(IAuthentication, context=self).prefix,
             self.__parent__.prefix, self.__name__)
         return self.id
-
-    def getLogin(self):
-        return self.login
 
 
 class FacebookCredentials(object):
@@ -183,7 +178,6 @@ class AuthenticatorPlugin(ContentContainer):
     def _createPrincipal(self, userInfo):
         principal = FacebookPrincipal()
         principal.login = unicode(userInfo['username'] or str(userInfo['uid']), 'utf-8')
-        principal.password = u''
         principal.firstname = unicode(userInfo['first_name'], 'utf-8')
         principal.lastname = unicode(userInfo['last_name'], 'utf-8')
         principal.facebookId = userInfo['uid']

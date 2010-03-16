@@ -35,10 +35,9 @@
       <implements interface="zojax.content.type.interfaces.ISearchableContent"/>
       <require
        permission="zope.View"
-       interface="zojax.principal.field.interfaces.IUser"/>
+       interface=".interfaces.IFacebookPrincipal"/>
       <require
        permission="zojax.ModifyContent"
-       interface=".interfaces.IFacebookPrincipal"
        set_schema=".interfaces.IFacebookPrincipal"/>
     </class>
     
@@ -85,5 +84,6 @@
     
   </registerIn>
   
+  <include package=".browser" file="preference.zcml" />
   
 </configure>

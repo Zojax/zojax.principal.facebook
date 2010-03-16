@@ -2,8 +2,6 @@ from zope import interface, schema
 from zope.i18nmessageid.message import MessageFactory
 from zope.app.authentication.interfaces import IPrincipalInfo
 
-from zojax.principal.users.interfaces import IPrincipal
-
 
 _ = MessageFactory("zojax.principal.facebook")
 
@@ -31,13 +29,27 @@ class IFacebookPrincipalInfo(IPrincipalInfo):
     facebookId = interface.Attribute('Facebook ID')
     
 
-class IFacebookPrincipal(IPrincipal):
+class IFacebookPrincipal(interface.Interface):
     """ facebook principal """
+    
+    firstname = schema.TextLine(
+        title=_('First Name'),
+        description=_(u"e.g. John. This is how users "
+                      u"on the site will identify you."),
+        required = True)
+
+    lastname = schema.TextLine(
+        title=_('Last Name'),
+        description=_(u"e.g. Smith. This is how users "
+                      u"on the site will identify you."),
+        required = True)
 
     login = schema.TextLine(
         title=_("Login"),)
 
     facebookId = schema.Int(title=_(u"Facebook ID"))
+    
+    id = schema.Int(title=_(u"ID"))
 
 
 class IFacebookPrincipalMarker(interface.Interface):
