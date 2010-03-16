@@ -1,0 +1,12 @@
+<configure
+ xmlns="http://namespaces.zope.org/zope"
+ xmlns:browser="http://namespaces.zope.org/browser"
+ xmlns:zojax="http://namespaces.zope.org/zojax"
+ i18n_domain="zojax.principal.facebook">
+  
+  <zojax:resourcedirectory
+     name="zojax-principal-facebook-images"
+     directory="images"
+   />
+     
+</configure>

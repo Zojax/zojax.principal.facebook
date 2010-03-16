@@ -1,9 +1,14 @@
 <div class="facebook-auth" i18n:domain="zojax.principal.facebook"
      xmlns:fb="http://www.facebook.com/2008/fbml">
-  <fb:login-button tal:attributes="onlogin view/onlogin"></fb:login-button>
-  <script type="text/javascript" tal:content="view/fbInitScript">
-  </script>
-  <script type="text/javascript">
-  FB.Connect.logout();
-  </script>
+  <tal:block define="site modules/zope/app/component/hooks/getSite;
+                     siteURL site/@@absolute_url;">
+    <script type="text/javascript" tal:content="view/fbInitScript">
+    </script>
+    <script type="text/javascript">
+    FB.Connect.logout();
+    </script>
+    <a href="#" onclick="FB.Connect.requireSession(); return false;">
+      <img id="fb_login_image" tal:attributes="src string:$siteURL/@@/zojax-principal-facebook-images/facebook.png" alt="Connect" />
+    </a>
+  </tal:block>
 </div>
