@@ -38,7 +38,7 @@ class LoginAction(BrowserPagelet):
         self.product = component.getUtility(IFacebookAuthenticationProduct)
         self.fbInitScript = self.product.initScript(self.request)
         self.callbackURL = '%s/facebookSignIn'%absoluteURL(getSite(), self.request)
-        self.onlogin = "window.location = '%s'"%self.callbackURL
+        self.onclick = "FB.Connect.requireSession(function(){window.location = '%s'}); return false;"%self.callbackURL
 
     def isAvailable(self):
         if not IUnauthenticatedPrincipal.providedBy(self.request.principal):

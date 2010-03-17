@@ -7,7 +7,7 @@
     <script type="text/javascript">
     FB.Connect.logout();
     </script>
-    <a href="#" onclick="FB.Connect.requireSession(); return false;">
+    <a href="#" tal:attributes="onclick view/onclick">
       <img id="fb_login_image" tal:attributes="src string:$siteURL/@@/zojax-principal-facebook-images/facebook.png" alt="Connect" />
     </a>
   </tal:block>
