@@ -20,5 +20,5 @@ class FacebookAuthenticationProduct(Product):
 
     def initScript(self, request):
         return r"""
-FB.init("%(apiKey)s", "%(siteURL)s/xd_receiver.htm", {"forceBrowserPopupForLogin":true});
+FB_RequireFeatures(["Api"], function(){ FB.init("%(apiKey)s", "%(siteURL)s/xd_receiver.htm", {"forceBrowserPopupForLogin":true})});
 """ % dict(apiKey=self.apiKey, siteURL=absoluteURL(getSite(), request))
