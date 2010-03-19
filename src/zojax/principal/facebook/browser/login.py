@@ -36,7 +36,7 @@ class LoginAction(BrowserPagelet):
     def update(self):
         super(LoginAction, self).update()
         self.product = component.getUtility(IFacebookAuthenticationProduct)
-        self.fbInitScript = self.product.initScript(self.request)
+        self.fbInitScript = self.product.initScript(self.request, onInit='FB.Connect.logout()')
         self.callbackURL = '%s/facebookSignIn'%absoluteURL(getSite(), self.request)
         self.onclick = "FB.Connect.requireSession(function(){window.location = '%s'}); return false;"%self.callbackURL
 
