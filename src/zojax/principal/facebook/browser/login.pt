@@ -5,7 +5,7 @@
     <script type="text/javascript" tal:content="view/fbInitScript">
     </script>
     <a href="#" tal:attributes="onclick view/onclick">
-      <img id="fb_login_image" tal:attributes="src string:$siteURL/@@/zojax-principal-facebook-images/facebook.png" alt="Connect" />
+      <img id="fb_login_image" tal:attributes="src string:$siteURL/@@/zojax-principal-facebook-images/facebook.png" i18n:attributes="alt" alt="Connect" />
     </a>
   </tal:block>
 </div>
