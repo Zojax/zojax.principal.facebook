@@ -1,0 +1,95 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Corporation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Thu Dec  8 22:13:28 2011\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/principal/facebook/browser/login.pt:8
+msgid "Connect"
+msgstr ""
+
+#: src/zojax/principal/facebook/browser/remove.py:52
+msgid "User has been removed."
+msgstr ""
+
+#: src/zojax/principal/facebook/browser/signin.py:43
+msgid "Login failed."
+msgstr ""
+
+#: src/zojax/principal/facebook/browser/xd_receiver.pt:5
+msgid "Cross-Domain Receiver Page"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:12
+msgid "Facebook API Key"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:13
+#: src/zojax/principal/facebook/interfaces.py:17
+msgid "See http://developers.facebook.com/setup.php"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:16
+msgid "Facebook API Secret"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:36
+msgid "First Name"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:37
+msgid "e.g. John. This is how users on the site will identify you."
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:42
+msgid "Last Name"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:43
+msgid "e.g. Smith. This is how users on the site will identify you."
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:48
+msgid "Login"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:50
+msgid "Facebook ID"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:52
+msgid "ID"
+msgstr ""
+
+#: src/zojax/principal/facebook/interfaces.py:61
+msgid "Facebook User Id"
+msgstr ""
+
+#: src/zojax/principal/facebook/plugin.py:143
+#: src/zojax/principal/facebook/plugin.py:292
+msgid "Facebook users"
+msgstr ""
+
+#: src/zojax/principal/facebook/plugin.py:287
+msgid "Facebook credentials plugin"
+msgstr ""
+
